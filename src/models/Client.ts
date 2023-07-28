@@ -34,24 +34,24 @@ const ClientSchema = new mongoose.Schema({
             required: [true, 'Must provide a zip code'],
             maxlength: [10, 'Zip code can not be longer than ten digits'],
             trim: true,
+            pets: [
+                {
+                    id: ObjectId,
+                    name: {
+                        type: String,
+                        required: [true, 'Must provide a name'],
+                    },
+                    species: {
+                        type: String,
+                        required: [true, 'Pet must have a specie'],
+                    },
+                    carry: {
+                        type: String,
+                        required: [true, 'Must provide '],
+                    },
+                },
+            ],
         },
-        pets: [
-            {
-                id: ObjectId,
-                name: {
-                    type: String,
-                    required: [true, 'Must provide a name'],
-                },
-                species: {
-                    type: String,
-                    required: [true, 'Pet must have a specie'],
-                },
-                carry: {
-                    type: String,
-                    required: [true, 'Must provide '],
-                },
-            },
-        ],
     },
 });
 
