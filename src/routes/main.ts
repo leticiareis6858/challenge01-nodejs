@@ -17,9 +17,9 @@ router.route('/tutors').get(getAllTutors); //retrieves all tutors
 
 router.route('/tutor').post(createTutor); //create a new tutor
 
-router.route('/tutor/:Id').put(updateTutor).post(getTutor); //updates a tutor
+router.route('/tutor/:id').put(updateTutor).post(getTutor); //updates a tutor
 
-router.route('/tutor/:Id').delete(deleteTutor); //deletes a tutor
+router.route('/tutor/:id').delete(deleteTutor); //deletes a tutor
 
 //pets
 
