@@ -1,1 +1,0 @@
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.azwkxec.mongodb.net/VetClinic-API?retryWrites=true&w=majority

@@ -4,8 +4,23 @@ import { tutor, pets } from '../models/Client';
 //pets:
 
 export const createPet = async (req: Request, res: Response) => {
-    const Pet = await pets.create(req.body); // done
-    res.status(201).json({ Pet });
+    const { tutorId } = req.params;
+
+    try {
+        const pet = await pets.create(req.body);
+        const Tutor = await tutor.findById(tutorId);
+        if (!Tutor) {
+            res.status(404).json({
+                msg: `There is no tutor with id: ${tutorId}`,
+            });
+        }
+        Tutor?.pets.push(pet._id);
+        await Tutor?.save();
+
+        res.status(201).json({ pets: pet });
+    } catch (error) {
+        return res.status(500).json({ error: 'Failed to create a pet' });
+    }
 };
 
 export const updatePet = async (
