@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { tutor } from '../models/Client';
 
 //tutor:
@@ -58,5 +58,5 @@ export const deleteTutor = async (
         );
     }
     const Tutor = await tutor.findByIdAndRemove({ _id: tutorId });
-    res.status(200).json({ Tutor });
+    res.status(200).json({ msg: `Deleted: ${Tutor}` });
 };
