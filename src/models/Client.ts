@@ -12,7 +12,14 @@ const PetsSchema = new mongoose.Schema({
     },
     carry: {
         type: String,
-        required: [true, 'Must provide '],
+    },
+    weight: Number,
+    date_of_birth: {
+        type: String,
+        maxlength: [
+            10,
+            'Birth date can not be longer than eigth digits. E.g. 01-01-2000',
+        ],
     },
 });
 
