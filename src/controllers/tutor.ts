@@ -1,31 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
-import { tutor } from '../models/Client';
-
-//tutor:
+import { tutorModel } from '../models/Client';
 
 export const getAllTutors = async (req: Request, res: Response) => {
-    const Tutors = await tutor.find({}); // done
-    res.status(200).json({ Tutors });
+    try {
+        const Tutors = await tutorModel.find({});
+        res.status(200).json({ Tutors });
+    } catch (error) {
+        res.status(500).json({ msg: 'Something went wrong.' });
+    }
 };
 
 export const createTutor = async (req: Request, res: Response) => {
-    const Tutor = await tutor.create(req.body); // done
-    res.status(201).json({ Tutor });
-};
-
-export const getTutor = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
-    const { id: tutorId } = req.params;
-    const Tutor = await tutor.findOne({ _id: tutorId });
-    if (!tutor) {
-        return next(
-            res.status(404).json({ msg: `Theres no tutor with id: ${tutorId}` })
-        ); // done
+    try {
+        const Tutor = await tutorModel.create(req.body);
+        res.status(201).json({ Tutor });
+    } catch (error) {
+        res.status(500).json({ msg: 'Something went wrong.' });
     }
-    res.status(200).json({ Tutor });
 };
 
 export const updateTutor = async (
@@ -33,17 +24,27 @@ export const updateTutor = async (
     res: Response,
     next: NextFunction
 ) => {
-    const { id: tutorId } = req.params;
-    const Tutor = await tutor.findOneAndUpdate({ _id: tutorId }, req.body, {
-        new: true,
-        runValidators: true,
-    });
-    if (!tutor) {
-        return next(
-            res.status(404).json({ msg: `Theres no tutor with id: ${tutorId}` }) // done
+    try {
+        const { id: tutorId } = req.params;
+        const Tutor = await tutorModel.findOneAndUpdate(
+            { _id: tutorId },
+            req.body,
+            {
+                new: true,
+                runValidators: true,
+            }
         );
+        if (!Tutor) {
+            return next(
+                res
+                    .status(404)
+                    .json({ msg: `Theres no tutor with id: ${tutorId}` }) // done
+            );
+        }
+        res.status(200).json({ Tutor });
+    } catch (error) {
+        res.status(500).json({ msg: 'Something went wrong.' });
     }
-    res.status(200).json({ Tutor });
 };
 
 export const deleteTutor = async (
@@ -51,12 +52,18 @@ export const deleteTutor = async (
     res: Response,
     next: NextFunction
 ) => {
-    const { id: tutorId } = req.params;
-    if (!tutor) {
-        return next(
-            res.status(404).json({ msg: `Theres no tutor with id: ${tutorId}` }) // done
-        );
+    try {
+        const { id: tutorId } = req.params;
+        const Tutor = await tutorModel.findByIdAndRemove(tutorId);
+        if (!Tutor) {
+            return next(
+                res
+                    .status(404)
+                    .json({ msg: `Theres no tutor with id: ${tutorId}` }) // done
+            );
+        }
+        res.status(200).json({ msg: 'Deleted:', Tutor });
+    } catch (error) {
+        res.status(500).json({ msg: 'Something went wrong.' });
     }
-    const Tutor = await tutor.findByIdAndRemove({ _id: tutorId });
-    res.status(200).json({ msg: `Deleted: ${Tutor}` });
 };

@@ -1,49 +1,51 @@
 import { NextFunction, Request, Response } from 'express';
-import { tutor, pets } from '../models/Client';
-
-//pets:
+import { tutorModel, petsModel } from '../models/Client';
 
 export const createPet = async (req: Request, res: Response) => {
     const { tutorId } = req.params;
 
     try {
-        const pet = await pets.create(req.body);
-        const Tutor = await tutor.findById(tutorId);
-        if (!Tutor) {
-            res.status(404).json({
+        const pet = await petsModel.create(req.body);
+
+        const tutor = await tutorModel.findById(tutorId);
+
+        if (!tutor) {
+            return res.status(404).json({
                 msg: `There is no tutor with id: ${tutorId}`,
             });
         }
-        Tutor?.pets.push(pet._id);
-        await Tutor?.save();
+        tutor.pets.push(pet._id);
+        await tutor.save();
 
-        res.status(201).json({ pets: pet });
+        res.status(201).json({ pet });
     } catch (error) {
-        return res.status(500).json({ error: 'Failed to create a pet' });
+        return res.status(500).json({ msg: 'Something went wrong.' });
     }
 };
 
-export const updatePet = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
-    const { tutorId, petsId } = req.params; // done
-    if (!tutor) {
-        return next(
-            res.status(404).json({ msg: `Theres no tutor with id:${tutorId}` })
-        );
+export const updatePet = async (req: Request, res: Response) => {
+    try {
+        const { tutorId, petId } = req.params;
+        const tutor = await tutorModel.findById(tutorId);
+        if (!tutor) {
+            return res
+                .status(404)
+                .json({ msg: `Theres no tutor with id:${tutorId}` });
+        }
+        const pet = await petsModel.findById(petId);
+        if (!pet) {
+            return res
+                .status(404)
+                .json({ msg: `Theres no pet with id: ${petId}` });
+        }
+        const petUpdated = await petsModel.findByIdAndUpdate(petId, req.body, {
+            new: true,
+            runValidators: true,
+        });
+        res.status(200).json({ petUpdated });
+    } catch (error) {
+        res.status(500).json({ msg: 'Something went wrong.' });
     }
-    if (!pets) {
-        return next(
-            res.status(404).json({ msg: `Theres no pet with id: ${petsId}` })
-        );
-    }
-    const Pets = await pets.findByIdAndUpdate({ _id: petsId }, req.body, {
-        new: true,
-        runValidators: true,
-    });
-    res.status(200).json({ Pets });
 };
 
 export const deletePet = async (
@@ -51,17 +53,24 @@ export const deletePet = async (
     res: Response,
     next: NextFunction
 ) => {
-    const { tutorId, petsId } = req.params; // done
-    if (!tutor) {
-        return next(
-            res.status(404).json({ msg: `Theres no tutor with id:${tutorId}` })
-        );
+    try {
+        const { tutorId, petId } = req.params;
+        const tutor = await tutorModel.findById(tutorId);
+        if (!tutor) {
+            return next(
+                res
+                    .status(404)
+                    .json({ msg: `Theres no tutor with id:${tutorId}` })
+            );
+        }
+        const pet = await petsModel.findByIdAndRemove(petId);
+        if (!pet) {
+            return next(
+                res.status(404).json({ msg: `Theres no pet with id: ${petId}` })
+            );
+        }
+        res.status(200).json({ msg: 'deleted:', pet });
+    } catch (error) {
+        res.status(500).json({ msg: 'Something went wrong.' });
     }
-    if (!pets) {
-        return next(
-            res.status(404).json({ msg: `Theres no pet with id: ${petsId}` })
-        );
-    }
-    const Pet = await pets.findByIdAndRemove({ _id: petsId });
-    res.status(200).json({ Pet });
 };
