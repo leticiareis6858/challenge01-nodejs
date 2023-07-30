@@ -3,7 +3,7 @@ import { tutorModel } from '../models/Client';
 
 export const getAllTutors = async (req: Request, res: Response) => {
     try {
-        const Tutors = await tutorModel.find({});
+        const Tutors = await tutorModel.find({}).populate('pets');
         res.status(200).json({ Tutors });
     } catch (error) {
         res.status(500).json({ msg: 'Something went wrong.' });
@@ -62,7 +62,7 @@ export const deleteTutor = async (
                     .json({ msg: `Theres no tutor with id: ${tutorId}` }) // done
             );
         }
-        res.status(200).json({ msg: 'Deleted:', Tutor });
+        res.status(200).json();
     } catch (error) {
         res.status(500).json({ msg: 'Something went wrong.' });
     }

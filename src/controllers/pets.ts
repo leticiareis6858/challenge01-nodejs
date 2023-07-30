@@ -69,7 +69,7 @@ export const deletePet = async (
                 res.status(404).json({ msg: `Theres no pet with id: ${petId}` })
             );
         }
-        res.status(200).json({ msg: 'deleted:', pet });
+        res.status(200).json();
     } catch (error) {
         res.status(500).json({ msg: 'Something went wrong.' });
     }
