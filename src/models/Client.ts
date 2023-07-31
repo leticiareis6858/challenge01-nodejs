@@ -18,7 +18,7 @@ const PetsSchema = new mongoose.Schema({
         type: String,
         maxlength: [
             10,
-            'Birth date can not be longer than eigth digits. E.g. 01-01-2000',
+            'Birth date can not be longer than ten digits. E.g. 01-01-2000',
         ],
     },
 });
@@ -45,7 +45,7 @@ const TutorSchema = new mongoose.Schema({
         required: true,
         maxlength: [
             10,
-            'Birth date can not be longer than eigth digits. E.g. 01-01-2000',
+            'Birth date can not be longer than ten digits. E.g. 01-01-2000',
         ],
         trim: true,
     },
