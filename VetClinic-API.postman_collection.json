@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "f7b0820d-6c18-4b3a-9f8c-2d245360ab8b",
+		"name": "VetClinic-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28633710"
+	},
+	"item": [
+		{
+			"name": "Get all tutors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/api/vetclinic/tutors"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new tutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"\",\r\n    \"phone\":\"\",\r\n    \"email\":\"\",\r\n    \"date_of_birth\":\"\",\r\n    \"zip_code\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/api/vetclinic/tutor"
+			},
+			"response": []
+		},
+		{
+			"name": "Updates a tutor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"\",\r\n    \"phone\":\"\",\r\n    \"email\":\"\",\r\n    \"date_of_birth\":\"\",\r\n    \"zip_code\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/vetclinic/tutor/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"vetclinic",
+						"tutor",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes a tutor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/vetclinic/tutor/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"vetclinic",
+						"tutor",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a pet and adds it to a tutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"\",\r\n    \"species\":\"\",\r\n    \"carry\":\"\",\r\n    \"weight\":\"\",\r\n    \"date_of_birth\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/vetclinic/pet/:tutorId",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"vetclinic",
+						"pet",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "tutorId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updates a pet´s info",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"\",\r\n    \"species\":\"\",\r\n    \"carry\":\"\",\r\n    \"weight\":\"\",\r\n    \"date_of_birth\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/vetclinic/pet/:petId/tutor/:tutorId",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"vetclinic",
+						"pet",
+						":petId",
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": ""
+						},
+						{
+							"key": "tutorId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes a pet",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/vetclinic/pet/:petId/tutor/:tutorId",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"vetclinic",
+						"pet",
+						":petId",
+						"tutor",
+						":tutorId"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": ""
+						},
+						{
+							"key": "tutorId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
