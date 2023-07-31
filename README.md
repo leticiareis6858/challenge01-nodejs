@@ -1,3 +1,8 @@
+## ✒️ Author
+
+-    👩‍💻 **Ana Leticia Vieira Reis de Carvalho**
+-    💌 **ana.carvalho.pb@compasso.com.br**
+
 # Challenge 1 - PB Node.Js
 
 This repository is for the first challenge of a node.js scholarship program of Compass. The challenge consists in the creation of a rest API for a veterinary franchise. With the requested patterns:
@@ -108,9 +113,6 @@ _**How to get the id of and tutor or pet:**_
 -   You can grab the id when you create a pet or tutor. The id of the createn pet or tutor will be displayed in the 'Response' field.
 -   You can also grab the id by using the 'Get All Tutors' request.
 
-## ✒️ Author
-
--   **Ana Leticia V.R. de Carvalho**
 
 ## ❤️ Expressions of gratitude
 
