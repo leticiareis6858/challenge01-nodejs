@@ -81,17 +81,29 @@ Use postman to send HTTP Requests to the API.
 
 -   Create a new tutor: In the 'Body' field, fill the fields with the information of the tutor, and then click on 'Send'.
 
--   Updates a tutor: You need to put the id of the tutor in the 'Params' part in the key id value section. Then go to 'Body' and fill ALL the info of the tutor(even the ones you are not going to update). Then click on 'Send'.
+-   Updates a tutor: You need to put the id of the tutor in the 'Params' part in the key id value section. Then go to 'Body' and fill the info you want to change. Then click on 'Send'.
 
 -   Deletes a tutor: Put the tutor´ id in the id key value section in the 'Params'. Then click on 'Send'.
 
 -   Create a pet and adds it to a tutor: Place the tutor´s id in the 'Params' section, then go to 'Body' and fill the pet´s info. Then click on 'Send'
 
--   Updates a pet´s info: In the 'Params' field, inform the pet´s id and it´s tutor id. Then go to 'Body' and fill ALL the info of the tutor(even the ones you are not going to update). Then click on 'Send'.
+-   Updates a pet´s info: In the 'Params' field, inform the pet´s id and it´s tutor id. Then go to 'Body' and fill the info you want to update. Then click on 'Send'.
 
 -   Deletes a pet: In the 'Params' section place the ids of the pet and the tutor. Then click on 'Send'.
 
-_How to get the id of and tutor or pet:_
+**Important notes:**
+
+- When you are updating a tutor or a pet, you **must** erase the fields of the info you are not going to update.
+  
+   **_example image:_**
+
+![image](https://github.com/ana-leticia-vieira/challenge01-nodejs/assets/102880247/3e30386a-6fb3-497e-af21-24b848cc9903)
+
+ (in this case I just wanted to update the name and the birth date of the tutor, so I only put those infos in the request body.)
+
+- The date_of_birth format is *string*. The date input must be in the format *dd-mm-yyyy*.
+
+_**How to get the id of and tutor or pet:**_
 
 -   You can grab the id when you create a pet or tutor. The id of the createn pet or tutor will be displayed in the 'Response' field.
 -   You can also grab the id by using the 'Get All Tutors' request.
