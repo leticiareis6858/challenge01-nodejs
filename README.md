@@ -1,6 +1,6 @@
 # Challenge 1 - PB Node.Js
 
-This repository is for the first challenge of a node.js scholarship program of Compass. The challenge consists in the creation of a rest API for a veterinary franchise. With the requested patterns:
+This repository is for the first challenge of a node.js scholarship program of Compass. The challenge consists in the creation of a REST API for a veterinary franchise. With the requested patterns:
 
 • GET /tutors -> Retrieves all tutors.
 
