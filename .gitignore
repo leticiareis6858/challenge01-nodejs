@@ -1,7 +1,7 @@
 node_modules
 dist
-package-lock.json
 .env
 .eslintrc.js
 .eslintignore
 .prettierrc
+package-lock.json
